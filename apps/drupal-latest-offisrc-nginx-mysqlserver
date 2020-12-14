@@ -55,6 +55,11 @@ swapFilename=$(createSwapFile swapfile 750 $rootDir/_swap)
 waitOrStop 0 "Failed to create swap file"
 sleep 5
 
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
 echo "Installing Drush" | log
 cd $appPath
 export COMPOSER_HOME=/root
